@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.colorRed {
+  color: red;
+}
+
+.active {
+  color: red;
+  font-weight: bold;
+}
