@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import ClassComponent, { ClassComponent2 } from './classComponent';
-import FunctionComponent, { FunctionComponent2 } from './funcComponent';
-import StudentDetails from './studentDetails';
+// import ClassComponent, { ClassComponent2 } from './classComponent';
+// import FunctionComponent, { FunctionComponent2 } from './funcComponent';
+// import StudentDetails from './studentDetails';
 
 // import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 // import LayoutPage from "./pages/LayoutPage";
@@ -12,7 +12,7 @@ import StudentDetails from './studentDetails';
 // import ContactPage from "./pages/ContactPage";
 
 import React, { useState } from 'react';
-import { useOutlet } from 'react-router-dom';
+// import { useOutlet } from 'react-router-dom';
 
 // ---- This function is for Components Rendering with Props ----
 // function App() {
@@ -151,39 +151,131 @@ import { useOutlet } from 'react-router-dom';
 // }
 
 // --- This Class is for "state" ----
+// class App extends React.Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             name: "Dinesh",
+//             subject: "ReactJs"
+//         };
+//     }
+
+//     changeName = () => {
+//         this.setState((previousState) => {
+//             return {
+//                 ...previousState,
+//                 name: "Gopal"
+//             }
+//         });
+//     }
+
+//     render() {
+//         return (
+//             <>
+//                 <h1>I'm {this.state.name}</h1>
+//                 <h2>My Subject is: {this.state.subject}</h2>
+//                 <button onClick={this.changeName}>Change Name</button>
+//             </>
+//         )
+//     }
+// }
+
+
+// This class is for checking the Component Life Cycle
+// class App extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         // if(props.subject!=="") {
+//         //     this.state = {
+//         //         subject: props.subject
+//         //     };
+//         // } else {
+//         //     this.state = {
+//         //         subject: "ReactJs"
+//         //     };
+//         // }
+//         this.state = {
+//             subject: "ReactJs"
+//         };
+//     }
+
+//     // static getDerivedStateFromProps(props) {
+//     //     return { subject: props.subject };
+//     // }
+
+//     shouldComponentUpdate(previousState) {
+//         if(previousState.subject !== this.state.subject) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+
+//     getSnapshotBeforeUpdate(prevProps, prevState) {
+//         document.getElementById("div1").innerHTML = "Before update: " + prevProps.subject + ", Prev State: " + prevState.subject;
+//     }
+
+//     componentDidUpdate() {
+//         document.getElementById("div2").innerHTML = "After update: " + this.state.subject;
+//     }
+
+//     // componentDidMount() {
+//     //     console.log("Called componentDidMount()");
+//     //     setTimeout(() => {
+//     //         this.setState({subject: "ExpressJs"})
+//     //     }, 4000)
+//     // }
+
+//     changeSubject = () => {
+//         this.setState({subject: "ExpressJs"})
+//     }
+
+//     render() {
+//         return (
+//             <>
+//                 <p>Subject: {this.state.subject}</p>
+//                 <button type="button" onClick={this.changeSubject}>Change Subject</button>
+//                 <div id="div1"></div>
+//                 <div id="div2"></div>
+//             </>
+//         )
+//     }
+// }
+
+// This class is for componentWillUnmount();
 class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            name: "Dinesh",
-            subject: "ReactJs"
-        };
+    constructor(props) {
+        super(props);
+        this.state = {show: true};
     }
-
-    changeName = () => {
-        this.setState((previousState) => {
-            return {
-                ...previousState,
-                name: "Gopal"
-            }
-        });
+    delComp = () => {
+        this.setState({show: false});
     }
-
+    render() {
+        let res;
+      //   if (this.state.show) {
+      //       res = <StudentDetails />;
+      //   };
+        return (
+            <div>
+                {/* {res} */}
+                {this.state.show && <StudentDetails />}
+                <button type="button" onClick={this.delComp}>Delete Component</button>
+            </div>
+        );
+    }
+  }
+  class StudentDetails extends React.Component {
+    componentWillUnmount() {
+        alert("The component named StudentDetails is about to be unmounted.");
+    }
     render() {
         return (
-            <>
-                <h1>I'm {this.state.name}</h1>
-                <h2>My Subject is: {this.state.subject}</h2>
-                <button onClick={this.changeName}>Change Name</button>
-            </>
-        )
+            <h1>Hello World!</h1>
+        );
     }
-}
-
-
-
-
-
+  }
+  
 
 
 
@@ -339,38 +431,6 @@ class App extends React.Component {
 //               <div id="div1"></div>
 //               <div id="div2"></div>
 //           </div>
-//       );
-//   }
-// }
-
-// class App extends React.Component {
-//   constructor(props) {
-//       super(props);
-//       this.state = {show: true};
-//   }
-//   delComp = () => {
-//       this.setState({show: false});
-//   }
-//   render() {
-//       let res;
-//       if (this.state.show) {
-//           res = <StudentDetails />;
-//       };
-//       return (
-//           <div>
-//               {res}
-//               <button type="button" onClick={this.delComp}>Delete Component</button>
-//           </div>
-//       );
-//   }
-// }
-// class StudentDetails extends React.Component {
-//   componentWillUnmount() {
-//       alert("The component named StudentDetails is about to be unmounted.");
-//   }
-//   render() {
-//       return (
-//           <h1>Hello World!</h1>
 //       );
 //   }
 // }
